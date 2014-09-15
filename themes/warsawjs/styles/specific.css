@@ -1,0 +1,57 @@
+.front-page .content h2 {
+	height: auto;
+}
+
+.front-page .content h3 {
+	height: 150px;
+}
+
+.topics h3 {
+	font-size: 44px;
+}
+
+.slide.shout.distant h2 {
+	font-size: 110px;
+}
+
+.slide.shout.distant h3 {
+	font-size: 2em;
+	position: absolute;
+	bottom: 20%;
+	left: 0;
+	text-align: center;
+	width: 100%;
+}
+
+.large h3 {
+	font-size: 140px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.large h4 {
+	text-align: center;
+	font-size: 50px;
+	line-height: 1.5;
+}
+
+.white {
+	color: #fff;
+}
+
+.distinct {
+	background-color: #f0db4f;
+	padding: .2em .4em;
+	border-radius: .5em;
+}
+
+.slide li {
+	font-size: 1.4em;
+}
+
+.cloud span {
+	display: block;
+	position: absolute;
+	font-size: 40px;
+	opacity: .5;
+}

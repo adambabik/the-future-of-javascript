@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>The Future Of JavaScript</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=792, user-scalable=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="stylesheet" href="themes/warsawjs/styles/screen.css">
+    <link rel="stylesheet" href="themes/warsawjs/styles/custom.css">
+    <link rel="stylesheet" href="themes/warsawjs/styles/specific.css">
+</head>
+<body class="list">
+    <header class="caption">
+        <h1>The Future Of JavaScript</h1>
+        <p>And Why You Should Care</p>
+    </header>
+
+    <section class="slide front-page">
+        <div>
+            <div class="logo">
+                <img src="themes/warsawjs/pictures/logo.png">
+            </div>
+            <div class="content">
+                <h2>The Future Of JavaScript</h2>
+                <h3>And Why You Should Care</h3>
+                <p>Adam Babik <a href="http://twitter.com/dreame4">@dreame4</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="slide topics">
+        <div>
+            <h2>Topics</h2>
+
+            <h3>The current state of ECMAScript standard</h3>
+            <h3>Selected features of ES6</h3>
+            <h3>How and why start to write in ES6</h3>
+        </div>
+    </section>
+
+    <section class="slide shout distant">
+        <div>
+            <h2>The Current State</h2>
+        </div>
+    </section>
+
+    <section class="slide large">
+        <div>
+            <h3>JavaScript</h3>
+            <h4>Powered by <span class="distinct">ECMAScript 5</span><br>since December 3, 2009</h4>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>The Current State</h2>
+            <ul>
+                <li>ES5 is supported in <a href="http://kangax.github.io/compat-table/es5/">all leading browsers</a></li>
+                <li>ES6 spec is targeting December 2014</li>
+                <li>ES7 contains new features which did not land in the previous version</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="slide topics">
+        <div>
+            <h2>Selected ES6 features</h2>
+
+            <h3>Iterators &amp; Generators</h3>
+            <h3>Arrows &amp; Destructuring</h3>
+            <h3>Rest &amp; Spread</h3>
+        </div>
+    </section>
+
+    <section class="slide shout distant">
+        <div>
+            <h2>Iterators<br>&amp; Generators</h2>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Iterator</h2>
+            <pre>
+                <code>Range.prototype[<mark>Symbol.iterator</mark>] = function () {</code>
+                <code>  return {</code>
+                <code>    <mark>next ()</mark> {</code>
+                <code>      return { <mark>value</mark>: val, <mark>done</mark>: val >= end };</code>
+                <code>    }</code>
+                <code>  };</code>
+                <code>};</code>
+            </pre>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Generator</h2>
+            <pre>
+                <code>Range.prototype[<mark>Symbol.iterator</mark>] = <mark>function *()</mark> {</code>
+                <code>  while (val <= end) {</code>
+                <code>    <mark>yield</mark> val++;</code>
+                <code>  }</code>
+                <code>};</code>
+            </pre>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Examples</h2>
+
+            <ul>
+                <li><a href="http://jsbin.com/xakih/4/edit">Chrome Canary</a></li>
+                <li><a href="http://jsbin.com/beyavebutema/3/edit">Firefox Aurora</a></li>
+                <li>Traceur + node.js (0.10) in <i>examples/generators</i></li>
+                <li>Generators + co library + node.js (0.11) with --harmony in <i>examples/generators_async</i></li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Arrow functions</h2>
+            <pre>
+                <code>let arr = [1, 2, 3, 4];</code>
+                <code>let arrMul2 = arr.map(<mark>x => x * 2</mark>);</code>
+            </pre>
+            <ul>
+                <li>implicit return only with expression body</li>
+                <li>lexical, <strong>NOT</strong> dynamic, <code>this</code></li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Destructuring</h2>
+            <pre>
+                <code>var swapArr = <mark>([x, y]) => [y, x];</mark></code>
+                <code>swapArr([1, 2]); <mark class="comment">// => [2, 1]</mark></code>
+                <code>var swapObj = <mark>({ x, y }) => ({ y, x });</mark></code>
+                <code>swapObj({ x: 1, y: 2 }); <mark class="comment">// => { x: 2,y: 1 }</mark></code>
+                <code><mark class="comment">// Works with parameters</mark></code>
+                <code>function <mark>len({ x, y })</mark> {</code>
+                <code>    return Math.sqrt(x*x + y*y);</code>
+                <code>}</code>
+            </pre>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Rest &amp; Spread</h2>
+            <ul>
+                <li><strong>rest</strong> binds trailing arguments to an array</li>
+                <li><strong>spread</strong> turns an array into consecutive arguments in a function call</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Rest + spread</h2>
+            <pre>
+                <code>var max = <mark>(...items)</mark> => {</code>
+                <code>    Array.isArray(items); <mark class="comment">// => true</mark></code>
+                <code>    return <mark>Math.max.call(null, ...items);</mark></code>
+                <code>    <mark class="comment">// like Math.max.apply(null, items);</mark></code></code>
+                <code>};</code>
+                <code>max(14, 3, 13, 12, 9);</code>
+            </pre>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Examples<br>Arrows<br>Destructuring<br>Rest + Spread</h2>
+            <ul>
+                <li>example in node.js: <i>examples/arrows</i></li>
+                <li><code>$ node build.js &amp;&amp; \<br>node ./arrows.build.js</code></li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>And More</h2>
+            <div class="cloud">
+                <span>Proxies</span>
+                <span>Classes</span>
+                <span>Modules</span>
+                <span>Symbols</span>
+                <span>Native Promises</span>
+                <span>let &amp; const</span>
+                <span>for..of</span>
+                <span>unicode</span>
+                <span>data sets</span>
+                <span>template strings</span>
+                <span>reflect</span>
+                <span>tail calls</span>
+            </div>
+
+            <script>
+                (function () {
+                    function toArray(collection) {
+                        return Array.prototype.slice.call(collection);
+                    }
+
+                    function spreadElements(elements, minX, minY, maxX, maxY) {
+                        elements.forEach(function (el) {
+                            var top = minY + Math.random() * (maxY - minY);
+                            var left = minX + Math.random() * (maxX - minX);
+                            el.style.top = (top|0) + 'px';
+                            el.style.left = (left|0) + 'px';
+                        });
+                    }
+
+                    var clouds = toArray(document.querySelectorAll('.cloud'));
+                    clouds.forEach(function (cloud) {
+                        var spans = toArray(cloud.querySelectorAll('span'));
+                        spreadElements(spans, 50, 140, 600, 500);
+                    });
+                }());
+            </script>
+        </div>
+    </section>
+
+    <section class="slide shout distant">
+        <div>
+            <h2>ES6 Now</h2>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>ES5 Compliant Browsers</h2>
+            <ul>
+                <li><a href="https://github.com/google/traceur-compiler">Traceur</a></li>
+                <li><a href="https://github.com/substack/node-browserify">browserify</a> + <a href="https://github.com/thlorenz/es6ify">es6ify</a> (includes Traceur)</li>
+                <li><a href="https://github.com/facebook/regenerator">facebook/regenerator</a> if all you need is generators</li>
+                <li>ES6-to-ES5 single feature transpilers (<a href="https://github.com/esnext/esnext">esnext</a>)</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>node.js</h2>
+            <ul>
+                <li>version 0.11 with <i>--harmony-*</i> flags<br><code>$ node --v8-options | grep harmony</code></li>
+                <li><a href="https://github.com/google/traceur-compiler">Traceur</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Living On The Edge</h2>
+            <ul>
+                <li>Chrome Canary</li>
+                <li>Firefox Aurora</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="slide shout distant">
+        <div>
+            <h2>But Why?</h2>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Why Should I Use ES6 Now</h2>
+            <ul>
+                <li>it is exiting and fun to explore</li>
+                <li>to improve your day-to-day workflow</li>
+                <li>to learn what will be a standard very soon</li>
+                <li>to give a feedback</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="slide shout distant">
+        <div>
+            <h2>Thank you!</h2>
+        </div>
+    </section>
+
+    <section class="slide shout distant">
+        <div>
+            <h2>Questions?</h2>
+        </div>
+    </section>
+
+    <section class="slide shout distant">
+        <div>
+            <h2><strong>10Clouds</strong> is hiring!</h2>
+            <h3><a href="http://www.10clouds.com/careers/index.html">10clouds.com/careers</a></h3>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <h2>Resources</h2>
+            <ol>
+                <li><a href="https://people.mozilla.org/~jorendorff/es6-draft.html">ES6 Spec Draft</a></li>
+                <li><a href="http://kangax.github.io/compat-table/es6/">kangax's ES6 compatibility table</a></li>
+                <li><a href="https://github.com/lukehoban/es6features">ES6 Features Description (a little bit outdated)</a></li>
+                <li><a href="http://davidwalsh.name/es6-generators">ES6 Generators</a></li>
+            </ol>
+        </div>
+    </section>
+
+    <p class="badge"><a href="https://github.com/dreame4/the-future-of-javascript-warsawjs">Fork Me!</a></p>
+
+    <div class="progress">
+        <div></div>
+    </div>
+
+    <script src="shower/shower.min.js"></script>
+</body>
+</html>
