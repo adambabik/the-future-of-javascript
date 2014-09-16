@@ -38,4 +38,6 @@ if (cmd === 'sequential' || cmd === 'seq') {
       console.log(e.code); // ENOTFOUND
    }
   })();
+} else {
+  console.log('Bad command');
 }
